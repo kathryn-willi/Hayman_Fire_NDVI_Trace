@@ -100,7 +100,7 @@ ggplot(comparison,aes(x=mean_ndsi,y=mean_ndvi, color=period)) +
   scale_color_few() + 
   facet_wrap(~site)
 
-## End code for question 3
+## End code for question 3 -----------------
 
 ###### Question 4 #####
 #What month is the greenest month on average? Does this change in the burned
@@ -132,6 +132,8 @@ ggplot(monthly_NDVI,aes(x=month,y=mean_ndvi,color=period)) +
   scale_color_few() + 
   facet_wrap(~site)
 
+## End code for question 4 -----------------
+
 ##### Question 5 ####
 #What month is the snowiest on average?
 
@@ -160,3 +162,4 @@ ggplot(monthly_NDSI,aes(x=month,y=mean_ndsi,color=period)) +
   theme_few() + 
   scale_color_few() + 
   facet_wrap(~site)
+## End code for question 5 -----------------
