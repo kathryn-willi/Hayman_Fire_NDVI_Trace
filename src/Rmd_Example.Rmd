@@ -27,11 +27,10 @@ library(dataRetrieval)#for downloading USGS data
 library(knitr)
 
 knitr::opts_knit$set(root.dir='../')
-
 ```
 
+```{r, message=FALSE, warning=FALSE}
 
-```{r,echo=T}
 #ndsi 
 ndsi <- read_csv('data/hayman_ndsi.csv') %>%
   rename(burned=2,unburned=3) %>%
@@ -89,9 +88,10 @@ q_water_year <- q_hayman %>%
 table(q_water_year$wtr_yr)
 ```
 
-####NDSI water year
 
-```{r, echo=TRUE}
+#### NDSI water year
+
+```{r, echo=FALSE}
 ndsi_water_year <- ndsi %>%
   mutate(month=month(DateTime),
          year_offset = ifelse(month > 9,1,0),
@@ -104,7 +104,7 @@ table(ndsi_water_year$wtr_yr)
 
 Now that we have our matched datasets we want to do a couple filtering operations. First, we want to make sure that we are only analyzing complete water years from the Q dataset. Second, we want to make sure we are only summarizing the snow data over months where snow cover is possible, which I would guess is between october and may. Once we have these filtering operations done, we want to summarize each dataset by water year so we can eventually join them and see if snow cover predicts Q.
 
-####Snow water year summary statistics
+#### Snow water year summary statistics
 
 ```{r, echo=FALSE}
 snow_means <-ndsi_water_year %>%
@@ -141,7 +141,8 @@ q_means
 plot_table <- inner_join(q_means, snow_means, by='wtr_yr')
 
 ggplot(data=plot_table, aes(x=mean_ndsi, y=median_q, color=wtr_yr)) +
-       geom_point()
+       geom_point() +
+  labs(x="Mean Snow Cover", y="Median Discharge (cfs)")
 ```
 
 ### Max Snow vs. Median Q
@@ -150,7 +151,8 @@ ggplot(data=plot_table, aes(x=mean_ndsi, y=median_q, color=wtr_yr)) +
 plot_table2 <- inner_join(q_means, snow_means, by='wtr_yr')
 
 ggplot(data=plot_table2, aes(x=max_ndsi, y=median_q, color=wtr_yr)) +
-       geom_point()
+       geom_point() +
+labs(x="Max Snow Cover", y="Median Discharge (cfs)")
 ```
 
 
