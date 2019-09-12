@@ -2,6 +2,8 @@ library(tidyverse)
 library(tidyr)
 library(ggthemes)
 library(lubridate)
+library(knitr)
+knitr::opts_knit$set(root.dir='../')
 
 # Now that we have learned how to munge (manipulate) data
 # and plot it, we will work on using these skills in new ways
@@ -87,7 +89,7 @@ ggplot(q2_data,aes(x=mean_ndsi,y=mean_ndvi, color=site)) +
 #How is the snow effect from question 2 different between pre- and post-burn
 # and burned and unburned? 
 
-#scatterplot of mean  ndsi vs. ndvi, separated by pre-/post- burn and site:
+#scatterplot of mean  ndvi vs. ndsi, separated by pre-/post- burn and site:
 
 comparison <- q2_data %>%
   mutate(period = cut(year,breaks=c(0,2003,2020),
