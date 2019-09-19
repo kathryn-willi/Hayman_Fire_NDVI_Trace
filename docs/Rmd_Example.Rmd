@@ -3,8 +3,9 @@ title: "Snow cover impacts on watershed discharge"
 author: "Kathryn Willi"
 date: "9/10/2019"
 output:
-  html_document: default
-  pdf_document: default
+  html_document:
+    toc: true
+    toc_float: true
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
